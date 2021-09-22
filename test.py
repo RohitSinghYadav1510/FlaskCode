@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/
 import unittest
 import app
 
