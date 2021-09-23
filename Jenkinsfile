@@ -1,28 +1,12 @@
 pipeline {
-
+  agent { docker { image 'rohit1015/flaskami:v1' } }
   stages {
-    stage('Git Fetch') {
+    stage('build') {
       steps {
-        git 'https://github.com/RohitSinghYadav1510/FlaskCode.git'
+        sh 'pip install -r requirements.txt'
       }
     }
-
-    stage('RUN APP') {
-      agent {
-          docker {
-              image 'flaskami:v1' 
-           }
-        } 
-      steps {
-        sh 'python app.py'
-      }
-    }
-    stage('Test APP') {
-      agent {
-          docker {
-              image 'flaskami:v1' 
-           }
-        } 
+    stage('test') {
       steps {
         sh 'python test.py'
       }
