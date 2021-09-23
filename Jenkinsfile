@@ -15,21 +15,5 @@ pipeline {
                 stash(name: 'compiled-results', includes: '*.py*')
             }
         }
-
-    stage('test') {
-      agent { 
-         docker { 
-              image 'rohit1015/flaskami:v1' 
-              } 
-            }
-      steps {
-        sh 'python test.py'
-      }
-      post {
-        always {
-          junit 'test-reports/*.xml'
-        }
-      }    
-    }
   }
 }
