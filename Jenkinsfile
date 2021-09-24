@@ -1,10 +1,17 @@
 pipeline {
    agent {
      docker {
-        image 'rohit1015/flaskimg:v1'
+        image 'python:3.9.4'
         }
      }
   stages {
+     stage('Build') {
+ 
+            steps {
+              sh 'python -m pip install --upgrade pip'
+              sh 'pip install -r requirements.txt'
+              }
+         }
      stage('Test Application') {
     
             steps {
