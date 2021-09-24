@@ -4,7 +4,7 @@ pipeline {
         skipStagesAfterUnstable()
     }
   stages {
-     stage('Build') {
+     stage('Test Application') {
             agent {
                 docker {
                     image 'rohit1015/flaskimg:v1'
@@ -19,5 +19,15 @@ pipeline {
                }
             }    
         }
-    }
+    stage('Run Application') {
+            agent {
+                docker {
+                    image 'rohit1015/flaskimg:v1'
+                }
+            }
+            steps {
+              sh 'python test.py'
+              }
+        }
+   }
 }
