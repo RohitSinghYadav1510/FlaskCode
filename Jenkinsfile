@@ -4,6 +4,16 @@ pipeline {
         skipStagesAfterUnstable()
     }
   stages {
+     stage('Build') {
+            agent {
+                docker {
+                    image 'rohit1015/flaskimg:v1'
+                }
+            }
+            steps {
+              sh 'pip install -r requirements.txt'
+              }
+
      stage('Test Application') {
             agent {
                 docker {
