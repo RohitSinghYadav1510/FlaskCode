@@ -26,7 +26,7 @@ pipeline {
                 }
             }
             steps {
-              sh 'python test.py'
+              sh 'python app.py'
               }
         }
    }
