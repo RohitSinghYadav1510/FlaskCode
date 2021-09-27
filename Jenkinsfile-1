@@ -1,5 +1,8 @@
 pipeline {
    agent none
+    options {
+        skipStagesAfterUnstable()
+    }
   stages {
 
      stage('Test Application') {
@@ -19,7 +22,7 @@ pipeline {
         }
      stage('sonar'){
           steps {
-           sh 'docker run --rm --net=host -v (PWD):/sonarqube-flask sonarsource/sonar-scanner-cli sonar-scanner -D sonar.projectBaseDir=/var/lib/jenkins/workspace/flaskseco'
+           sh 'docker run --rm --net=host -v (PWD):/var/lib/jenkins/workspace/flaskseco sonarsource/sonar-scanner-cli sonar-scanner -D sonar.projectBaseDir=/var/lib/jenkins/workspace/flaskseco'
         } 
      }  
    }
