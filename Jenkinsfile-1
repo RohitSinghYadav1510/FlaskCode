@@ -17,7 +17,7 @@ pipeline {
                }
             }    
         }
-     stage('sonar'){
+      stage('sonar'){
            sh 'docker run --rm --net=host -v (PWD):/sonarqube-flask sonarsource/sonar-scanner-cli sonar-scanner -D sonar.projectBaseDir=/var/lib/jenkins/workspace/flaskseco'
       }  
    }
