@@ -2,13 +2,12 @@ pipeline {
    agent none
   stages {
 
-     agent {
-       docker {
-         image 'rohit1015/flaskimg:v1'
-        }
-     } 
      stage('Test Application') {
-    
+            agent {
+               docker {
+                 image 'rohit1015/flaskimg:v1'
+               }
+           } 
             steps {
               sh 'python test.py'
               }
@@ -18,5 +17,8 @@ pipeline {
                }
             }    
         }
-    }
+     stage('sonar'){
+           sh 'docker run --rm --net=host -v (PWD):/sonarqube-flask sonarsource/sonar-scanner-cli sonar-scanner -D sonar.projectBaseDir=/var/lib/jenkins/workspace/flaskseco'
+      }  
+   }
 }
