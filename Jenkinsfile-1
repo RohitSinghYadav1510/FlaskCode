@@ -1,0 +1,22 @@
+pipeline {
+   agent none
+  stages {
+
+     agent {
+       docker {
+         image 'rohit1015/flaskimg:v1'
+        }
+     } 
+     stage('Test Application') {
+    
+            steps {
+              sh 'python test.py'
+              }
+            post {
+              always {
+                 junit 'test-reports/*.xml'
+               }
+            }    
+        }
+    }
+}
