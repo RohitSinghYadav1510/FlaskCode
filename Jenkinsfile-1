@@ -22,6 +22,7 @@ pipeline {
             }    
         }
      stage('Analysis'){
+          agent any
           steps {
            sh 'docker run --rm -e SONAR_HOST_URL=http://35.154.184.115:9000 -e SONAR_LOGIN=1accaab945bf018af4d31668e92d30e7d46551d7 -v pwd:/usr/src sonarsource/sonar-scanner-cli -Dsonar.projectKey=sonarqube-flask -Dsonar.python.xunit.reportPath=/test-reports/*.xml -Dsonar.projectBaseDir=/usr/src'
         } 
