@@ -24,7 +24,7 @@ pipeline {
      stage('Analysis with Sonarqube'){
           agent any
           steps {
-           sh 'docker run --rm -v /var/lib/jenkins/workspace/Newjob:/usr/src sonarsource/sonar-scanner-cli -Dsonar.projectKey=sonarqube-flask -Dsonar.projectBaseDir=/usr/src'
+           sh 'docker run --rm -v /var/lib/jenkins/workspace/Newjob:/usr/src sonarsource/sonar-scanner-cli -Dsonar.projectKey=sonarqube-flask'
         } 
      }  
    }
